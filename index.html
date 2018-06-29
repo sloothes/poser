@@ -179,8 +179,6 @@
 
 </section>
 
-<!-- script src="/js/w3.js"></script -->
-
             <!-- JQUERY -->
 
 <script src="/js/jquery.min.js"></script>
@@ -199,78 +197,6 @@
     $.ajaxSetup({ cache: false });
 
 </script>
-
-<script src="/js/localforage.js"></script>
-
-<script>
-
-    var AW3D_Cache = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "AW3D_Cache",
-        version: 1.0
-    });
-
-    var AW3D_Data = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "AW3D_Data",
-        version: 1.0
-    });
-
-    var AW3D_db = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "AW3D_db",
-        version: 1.0
-    });
-
-    var AW3D_Texture = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "AW3D_Texture",
-        version: 1.0
-    });
-
-    var AW3D_DNA = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "AW3D_DNA",
-        version: 1.0
-    });
-
-    AW3D_Cache.ready().then(function() {
-        console.log("[AW3D Cache ready]:", AW3D_Cache.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[AW3D Cache Error]:", err); 
-    });
-
-    AW3D_Data.ready().then(function() {
-        console.log("[AW3D Data ready]:", AW3D_Data.driver());   // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[AW3D Data Error]:", err); 
-    });
-
-    AW3D_db.ready().then(function() {
-        console.log("[AW3D datebase ready]:", AW3D_db.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[AW3D datebase Error]:", err); 
-    });
-
-    AW3D_Texture.ready().then(function() {
-        console.log("[AW3D Texture ready]:", AW3D_Texture.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[AW3D Texture Error]:", err); 
-    });
-
-    AW3D_DNA.ready().then(function() {
-        console.log("[AW3D DNA ready]:", AW3D_DNA.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[AW3D DNA Error]:", err); 
-    });
-
-</script>
-
 
       <!-- LOCAL STORAGE -->
 
@@ -442,6 +368,7 @@
     localPlayer.holder.visible = false;
     localPlayer.controller.center.set(0,1,0);
     localPlayer.controller.direction = Math.PI;
+    groundHelper.visible = true;
 
 //  scene.add(localPlayer.outfit.direction);  //  IMPORTANT  //
 
