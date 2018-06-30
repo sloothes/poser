@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="description" contents="{{description}}">
     <link rel="manifest" href="/manifest.json">
-    <title>Avatar Body Poser (v1.0)</title>
+    <title>Avatar Body Poser (v1.1)</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootbox-dialoges.css">
     <link rel="stylesheet" href="/css/side-panels.css">
@@ -342,6 +342,9 @@
     var MaleAnimations   = {}; // object.
     var FemaleAnimations = {}; // object.
 
+    var pose = "vVXLbtwwDPyXPcsC34/+SrCnXAukaHor+u8l5U3aHFLYDbLWxbKlITkzoh5+Xr49PV++PGwwoR7ygTkNGfL1sbH+Yfp1XL4//ajVMHpgzZ8fv9YcR43rr/GC9gpWL6rAvkMA5GEInCrJMTaagqorCUGk4whdEo3NJ6Eyj5oShMmJInjfnmLW28WR7c/2WSQBWqawS4rLwoOZiqCmaFRvyvqPAJgh3tAqSjloUlSse9K84RT+OM/5AZ63Tye6I4Dywg6OjMV0AN6V6SaWoz7OTCXqZOpMZegpCExto0AppGPHdDpeR/8/U7UVcVLxiulYRkXM4+HWEWRgGW0zByzaJJ3ikxKmqUmRFY3IZFkp/E3jmlDRAy0wy/VASq2kEYkFW6JkpSdrq4mJBmKwSBROLXS1BCVwdi472ruJyERRXYcBTNrWdSrU+YTYPC1jMQamlWkV5Ux2nLq9pVNlAePW3oVPaK+a5rROGhmUU+8V+ZTk3bdMjXbNOW6iw98NqEVnVgc3BSvpbsJ0D+hew0hBLZFpmTXMmA3rEowlORJrLat6gO19ybdd87hpzuZL86zIx4tZojsv0a3s16JTxlnqq7SlW1/besoxdQ1hXUlLdDGX45fR/0S+/gY="
+    pose = JSON.parse( decode( pose ) );
+
     var dna = "tVVdb5swFP0vPMfEBowhb3yq25qpXR66bqoiCC645auYdIqi/PddIFqL0rVZlImna5977XvOPXirxFWyUWZbpYwKrsyGcKI8CyniHBbaZs0nilxFXfCTTOC7mygprwreNpCoTOWjKEueTC/CpQvJl9GGN0vH/YKN5TPW1AcJ5Yqo5Y2Icgk1tkq7qbuj5lxmizYqk6hJ5ntAj61hM2vbWs6mU6GKIl036qoqpvW3W+/2MVYf6hRwvBBSimc+/yve/x5ffGb5Hl/VrahK2fW6XosEciyL+ZZmMeSbvo8M7NjI8TWMcGAxNwgp1QiFxD0z0N8CWn1101WVV40yIyZjDKBAk0gAibuzopVogR4Ci1mUiDJVZtrLnWGDMGaaNmB7/nrAwHXbRKWso4aXrTK7B85granWaVZyCbfHqgkc8TbK9/FL1U9ly0s5nLvbTU4neiHo9U2O1bo8jugx/pBo4nqmF+oMEZ0EyLBDIFq3bEQptgPH0DziOiOigw2XZyLa1phpEf0EnumY5y5+m+m73UTJItHIVz4a4lONdNFlz3ki1sUy/B9W8n8lN5dNvFcsXhf1OzYaYQ/V9cEzxMUB8nzsIMMJNWRbmoZcz7Id5lHHMvWRul13Z1L3FP+8oWtHwGKQBquYDpImTQ/4I+kQnyqp32X3YlIQUz+nmJf4+upGM44Sc4z92Npj/KH41Ahd4ng28i1CkWE6OrIJ/E1D5nrMx7oduOZI/J6HM6kPU6Zjm30wA8PSP4wA6mbgPbPLrOKvJ2OIT52MRSd1vuhq9O+meYTZr7KqTI8ajvbh64+n+Gn/CL4/HGPsodhm6AQhwxh5YciQodkExLZ8RIlh6tTTKNWN8YPZt3aE3NoZzf6mmVNeJhwOVu550W3tfgM="
 
     addLocalPlayerFromDNA( dna );
@@ -352,6 +355,20 @@
         localPlayer.outfit.fromDNA( dna );
         scene.add(localPlayer.outfit.direction);
         localPlayer.outfit.update();
+    }
+
+    setTimeout( initPose, 3000, pose ); // TODO: to replace setTimeout.
+
+    function initPose( json ){
+        localPlayer.outfit.outfits.forEach( function( name ){
+            if ( !!localPlayer.outfit[name] ) {
+                json.forEach(function ( key, i ) {
+                    localPlayer.outfit[name].skeleton.bones[i].position.fromArray( json[i].pos );
+                    localPlayer.outfit[name].skeleton.bones[i].quaternion.fromArray( json[i].rot );
+                    localPlayer.outfit[name].skeleton.bones[i].scale.fromArray( json[i].scl );
+                });
+            }
+        });
     }
 
 </script>
