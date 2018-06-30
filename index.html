@@ -206,8 +206,8 @@
 
     <!-- INFLATE - DEFLATE -->
 
-<script async src="/js/rawinflate.js"></script>
-<script async src="/js/rawdeflate.js"></script>
+<script src="/js/rawinflate.js"></script>
+<script src="/js/rawdeflate.js"></script>
 
 <script>
 
@@ -217,16 +217,6 @@
 
     function decode( string ) {
         return RawDeflate.inflate( window.atob( string ) );
-    }
-
-//  Samples:
-
-    function getDecodedItemFromLocalStorage( key ){
-        return JSON.parse( RawDeflate.inflate( window.atob( localStorage.getItem( key ) ) ) );
-    }
-
-    function setEncodedItemToLocalStorage(key, data){
-        localStorage.setItem(key, window.btoa( RawDeflate.deflate( JSON.stringify( data ) ) ) );
     }
 
 </script>
