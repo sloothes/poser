@@ -23,9 +23,27 @@
     <link rel="stylesheet" href="/css/joystick.css">
     <link rel="stylesheet" href="/css/uppy.css">
 
+            <!-- JQUERY -->
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.lazy.js"></script>
+    <script src="/js/jquery.lazy.plugins.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/validator.min.js"></script>
+
+    <script>
+
+        debugMode = true;
+        var jsFolder = "/js/";
+        var navbarFolder = "/navbar/";
+        var scriptsFolder = "/scripts/";
+        var componentsFolder = "/components/";
+        var animationsFolder = "/animations/";
+        $.ajaxSetup({ cache: true });
+
+    </script>
+
 </head>
-
-
 
 <!--style>
     .navbar-nav > li > a.menu-item,
@@ -75,7 +93,6 @@
 
 <script>
 //  poser-navbar.html
-    var navbarFolder = "/navbar/";
     var navbarHolderSelector = "#navbar-holder";
     var navbarComponent = navbarFolder + "poser.html";
     $(navbarHolderSelector).load(navbarComponent, function(resoponse, status, xhr){
@@ -196,25 +213,6 @@
     </div>
 
 </section>
-
-            <!-- JQUERY -->
-
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.lazy.js"></script>
-<script src="/js/jquery.lazy.plugins.js"></script>
-<script src="/js/jquery-ui.js"></script>
-<script src="/js/validator.min.js"></script>
-
-<script>
-
-    debugMode = true;
-    var jsFolder = "/js/";
-    var scriptsFolder = "/scripts/";
-    var componentsFolder = "/components/";
-    var animationsFolder = "/animations/";
-    $.ajaxSetup({ cache: true });
-
-</script>
 
       <!-- LOCAL STORAGE -->
 
