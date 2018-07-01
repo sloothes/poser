@@ -133,7 +133,7 @@
                 <li id="action-controls" class="menu-helpers"><a>Action Controls</a></li>
             </div>
 
-            <div id="pose-loader-holder" class="side-holder"></div>
+            <div id="pose-load-file-holder" class="side-holder"></div>
             <div id="avatar-editor-holder"  class="side-holder"></div>
             <div id="outfit-editor-holder"  class="side-holder"></div>
             <div id="pose-editor-holder" class="side-holder"></div>
@@ -273,11 +273,11 @@
 </script>
 
 <script>
-//  pose-load-button.html
-    var poseLoaderHolderSelector = "#pose-loader-holder";
-    var poseLoadButtonComponent = componentsFolder + "pose-load-button.html";
-    $(poseLoaderHolderSelector).load(poseLoadButtonComponent, function(resoponse, status, xhr){
-        debugMode && console.log("pose-load-button:", status);
+//  pose-load-file-button.html
+    var poseLoadFileHolderSelector = "#pose-load-file-holder";
+    var poseLoadFileButtonComponent = componentsFolder + "pose-load-file-button.html";
+    $(poseLoadFileHolderSelector).load(poseLoadFileButtonComponent, function(resoponse, status, xhr){
+        debugMode && console.log("pose-load-file-button:", status);
     });
 </script>
 
