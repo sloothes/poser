@@ -137,7 +137,8 @@
             <div id="avatar-editor-holder"  class="side-holder"></div>
             <div id="outfit-editor-holder"  class="side-holder"></div>
             <div id="pose-editor-holder" class="side-holder"></div>
-            <div id="pose-save-button-holder" class="side-holder"></div>
+            <div id="pose-save-file-holder" class="side-holder"></div>
+            <div id="pose-save-storage-holder" class="side-holder"></div>
             <div id="snapshot-holder" class="side-holder"></div>
 
         </div>
@@ -290,10 +291,10 @@
 </script>
 
 <script>
-//  pose-save-button.html
-    var poseSaveButtonHolderSelector = "#pose-save-button-holder";
+//  pose-save-file-button.html
+    var poseSaveFileHolderSelector = "#pose-save-file-holder";
     var poseSaveFileButtonComponent = componentsFolder + "pose-save-file-button.html";
-    $(poseSaveButtonHolderSelector).load(poseSaveFileButtonComponent, function(resoponse, status, xhr){
+    $(poseSaveFileHolderSelector).load(poseSaveFileButtonComponent, function(resoponse, status, xhr){
         debugMode && console.log("pose-save-button:", status);
     });
 </script>
