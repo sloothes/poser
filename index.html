@@ -120,8 +120,6 @@
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
 
-            <div class="patreon-holder"></div>
-
         </div>
 
     </div>
@@ -135,35 +133,34 @@
                 <li id="action-controls" class="menu-helpers"><a>Action Controls</a></li>
             </div>
 
-            <div id="skinned-loader-holder" class="side-holder"></div>
-
-            <div id="editor-holder">
-
-                <div id="skintone-buttons" class="side-holder"></div>
-
-                <div id="gender-buttons" class="side-holder"></div>
-
-            </div>
-
+            <div id="pose-loader-holder" class="side-holder"></div>
             <div id="avatar-editor-holder"  class="side-holder"></div>
-            <div id="outfit-editor-holder"></div>
-            <div id="scene-editor-holder"></div>
-
-            <div id="animator-editor-holder" class="side-holder"></div>
-
-            <div id="avatar-save-holder" class="side-holder"></div>
+            <div id="outfit-editor-holder"  class="side-holder"></div>
+            <div id="pose-editor-holder" class="side-holder"></div>
+            <div id="pose-save-button-holder" class="side-holder"></div>
             <div id="snapshot-holder" class="side-holder"></div>
-
-            <div id="scene-window-holder"></div>
-            <div id="outfit-saver-holder"></div>
-            <div id="water-editor-holder"></div>
-
-            <div id="updaters-holder"></div>
 
         </div>
     </div>
 
 </section>
+
+<script src="/js/localforage.js"></script>
+
+    var GalleryStorage = localforage.createInstance({
+        driver: localforage.INDEXEDDB,
+        name: "anywhere3d",
+        storeName: "gallery",
+        version: 1.0
+    });
+
+    GalleryStorage.ready().then(function() {
+        console.log("[GalleryStorage ready]:", GalleryStorage.driver()); // <-- asyncStorage
+    }).catch(function (err) {
+        console.error("[GalleryStorage Error]:", err); 
+    });
+
+</script>
 
       <!-- LOCAL STORAGE -->
 
@@ -234,6 +231,15 @@
 <script src="/js/KeyInputControls.js"></script>
 <script src="/js/JoystickControls.js"></script>
 <script src="/js/outfitLoader.js"></script>
+<script src="/js/loaders/bonesLoader.js"></script>
+
+<script>
+
+    var Animations       = {};
+    var MaleAnimations   = {};
+    var FemaleAnimations = {};
+
+</script>
 
      <!-- COMPONENTS -->
 
@@ -251,31 +257,29 @@
 </script>
 
 <script>
-/*
-//  skinned-loader-button.html
-    var skinnedLoaderHolderSelector = "#skinned-loader-holder";
-    var skinnedLoaderButtonComponent = componentsFolder + "skinned-loader-button.html";
-    $(skinnedLoaderHolderSelector).load(skinnedLoaderButtonComponent, function(resoponse, status, xhr){
-        debugMode && console.log("skinned-loader-button:", status);
+//  pose-load-button.html
+    var poseLoaderHolderSelector = "#pose-loader-holder";
+    var poseLoadButtonComponent = componentsFolder + "pose-load-button.html";
+    $(poseLoaderHolderSelector).load(poseLoadButtonComponent, function(resoponse, status, xhr){
+        debugMode && console.log("pose-load-button:", status);
     });
-*/
 </script>
 
 <script>
 //  poser-editor-button.html
-    var animatorEditorHolderSelector = "#animator-editor-holder";
+    var poseEditorHolderSelector = "#pose-editor-holder";
     var poserEditorButtonComponent = componentsFolder + "poser-editor-button.html";
-    $(animatorEditorHolderSelector).load(poserEditorButtonComponent, function(resoponse, status, xhr){
+    $(poseEditorHolderSelector).load(poserEditorButtonComponent, function(resoponse, status, xhr){
         debugMode && console.log("poser-editor-button:", status);
     });
 </script>
 
 <script>
-//  avatar-skin-editor-button.html
-    var avatarEditorHolderSelector = "#avatar-editor-holder";
-    var skinEditorButtonComponent = componentsFolder + "avatar-skin-editor-button.html";
-    $(avatarEditorHolderSelector).load(skinEditorButtonComponent, function(resoponse, status, xhr){
-        debugMode && console.log("avatar-skin-editor-button:", status);
+//  pose-save-button.html
+    var poseSaveButtonHolderSelector = "#pose-save-button-holder";
+    var poseSaveButtonComponent = componentsFolder + "pose-save-button.html";
+    $(poseSaveButtonHolderSelector).load(poseSaveButtonComponent, function(resoponse, status, xhr){
+        debugMode && console.log("pose-save-button:", status);
     });
 </script>
 
@@ -288,31 +292,19 @@
     });
 </script>
 
-    <!-- RUNTIME ENGINE -->
-
 <script src="/js/jquery-update-engine.js"></script>
 <script src="/js/jquery-render-engine.js"></script>
 
 <script>
-
-    var Animations       = {}; // object.
-    var MaleAnimations   = {}; // object.
-    var FemaleAnimations = {}; // object.
-
-    var pose = "vVXLbtwwDPyXPcsC34/+SrCnXAukaHor+u8l5U3aHFLYDbLWxbKlITkzoh5+Xr49PV++PGwwoR7ygTkNGfL1sbH+Yfp1XL4//ajVMHpgzZ8fv9YcR43rr/GC9gpWL6rAvkMA5GEInCrJMTaagqorCUGk4whdEo3NJ6Eyj5oShMmJInjfnmLW28WR7c/2WSQBWqawS4rLwoOZiqCmaFRvyvqPAJgh3tAqSjloUlSse9K84RT+OM/5AZ63Tye6I4Dywg6OjMV0AN6V6SaWoz7OTCXqZOpMZegpCExto0AppGPHdDpeR/8/U7UVcVLxiulYRkXM4+HWEWRgGW0zByzaJJ3ikxKmqUmRFY3IZFkp/E3jmlDRAy0wy/VASq2kEYkFW6JkpSdrq4mJBmKwSBROLXS1BCVwdi472ruJyERRXYcBTNrWdSrU+YTYPC1jMQamlWkV5Ux2nLq9pVNlAePW3oVPaK+a5rROGhmUU+8V+ZTk3bdMjXbNOW6iw98NqEVnVgc3BSvpbsJ0D+hew0hBLZFpmTXMmA3rEowlORJrLat6gO19ybdd87hpzuZL86zIx4tZojsv0a3s16JTxlnqq7SlW1/besoxdQ1hXUlLdDGX45fR/0S+/gY="
-    pose = JSON.parse( decode( pose ) );
-
     var dna = "tVVdb5swFP0vPMfEBowhb3yq25qpXR66bqoiCC645auYdIqi/PddIFqL0rVZlImna5977XvOPXirxFWyUWZbpYwKrsyGcKI8CyniHBbaZs0nilxFXfCTTOC7mygprwreNpCoTOWjKEueTC/CpQvJl9GGN0vH/YKN5TPW1AcJ5Yqo5Y2Icgk1tkq7qbuj5lxmizYqk6hJ5ntAj61hM2vbWs6mU6GKIl036qoqpvW3W+/2MVYf6hRwvBBSimc+/yve/x5ffGb5Hl/VrahK2fW6XosEciyL+ZZmMeSbvo8M7NjI8TWMcGAxNwgp1QiFxD0z0N8CWn1101WVV40yIyZjDKBAk0gAibuzopVogR4Ci1mUiDJVZtrLnWGDMGaaNmB7/nrAwHXbRKWso4aXrTK7B85granWaVZyCbfHqgkc8TbK9/FL1U9ly0s5nLvbTU4neiHo9U2O1bo8jugx/pBo4nqmF+oMEZ0EyLBDIFq3bEQptgPH0DziOiOigw2XZyLa1phpEf0EnumY5y5+m+m73UTJItHIVz4a4lONdNFlz3ki1sUy/B9W8n8lN5dNvFcsXhf1OzYaYQ/V9cEzxMUB8nzsIMMJNWRbmoZcz7Id5lHHMvWRul13Z1L3FP+8oWtHwGKQBquYDpImTQ/4I+kQnyqp32X3YlIQUz+nmJf4+upGM44Sc4z92Npj/KH41Ahd4ng28i1CkWE6OrIJ/E1D5nrMx7oduOZI/J6HM6kPU6Zjm30wA8PSP4wA6mbgPbPLrOKvJ2OIT52MRSd1vuhq9O+meYTZr7KqTI8ajvbh64+n+Gn/CL4/HGPsodhm6AQhwxh5YciQodkExLZ8RIlh6tTTKNWN8YPZt3aE3NoZzf6mmVNeJhwOVu550W3tfgM="
+    localPlayer.fromDNA( dna );
+</script>
 
-    addLocalPlayerFromDNA( dna );
+<script>
+    var hm_pose = "vVa7bhwxDPwX1zqB70d+xXCVNoCDOF2Qf89IewkuhY1b2PBts9KJ5HA4pPbx18P355eHL48XmoSf5OCawspjb3Dn03j48fwTR2ish7F++foNax54nn6Pvy7+ecCLO2keLoj6bhc83VprXGQau8fyYMxyv4eVh4xLIgdXHVgKVdiJJPQwb4tY5pasccKcuyyXoZtLD5lS8PSZJF54mr6fxX4Hi5d30rjsyXVbllbX5rGIP5hH8IKtFAkBPlXK5XZ2N3drk6njxd/kybSwCRsXWXjRMl1+impuX0ohlMjH4TPl/lTX/2eICXBriMfktZXK3DfhJimS6a4INt7sjNc2SahNsOMV4sZSm77C4ZTgcPZ4u1eV1MZSbNKaOQa7usUiUdVSHsYdtBXBpN5CgjCBIKQbCUMfUtgmLUI1eyMxoEILkEng7AdxKBPxqwEbNNiWd+V/o3KCoSqOWjoCLpeFMUQsALrZFj+2TcPCvJhLzQp+cDA9mlwoNUGkvQ7bJiO73aAUtloNneqpJ/SnM7o29RQOpEgqFaSfEjB0ABQ0rreI6Qk5unek7L6TIDTPZ0U+VfI1S8NDjpprXYtOt0NxUjkmBq4wyA5FDd6wEotsFJSUM3NRjb4o46yoSMuyVXPD1IBclhJKNwuvIDmKXteia+Queoven/tlVz1340QA6qo6+uks91D0Ltz6UvBTksHdyHZMW/RE2qm74XTkpz8=";
+    var fm_pose = "vVXLbtwwDPyXPcsC34/+SrCnXAukaHor+u8l5U3aHFLYDbLWxbKlITkzoh5+Xr49PV++PGwwoR7ygTkNGfL1sbH+Yfp1XL4//ajVMHpgzZ8fv9YcR43rr/GC9gpWL6rAvkMA5GEInCrJMTaagqorCUGk4whdEo3NJ6Eyj5oShMmJInjfnmLW28WR7c/2WSQBWqawS4rLwoOZiqCmaFRvyvqPAJgh3tAqSjloUlSse9K84RT+OM/5AZ63Tye6I4Dywg6OjMV0AN6V6SaWoz7OTCXqZOpMZegpCExto0AppGPHdDpeR/8/U7UVcVLxiulYRkXM4+HWEWRgGW0zByzaJJ3ikxKmqUmRFY3IZFkp/E3jmlDRAy0wy/VASq2kEYkFW6JkpSdrq4mJBmKwSBROLXS1BCVwdi472ruJyERRXYcBTNrWdSrU+YTYPC1jMQamlWkV5Ux2nLq9pVNlAePW3oVPaK+a5rROGhmUU+8V+ZTk3bdMjXbNOW6iw98NqEVnVgc3BSvpbsJ0D+hew0hBLZFpmTXMmA3rEowlORJrLat6gO19ybdd87hpzuZL86zIx4tZojsv0a3s16JTxlnqq7SlW1/besoxdQ1hXUlLdDGX45fR/0S+/gY=";
 
-    function addLocalPlayerFromDNA( dna ){
-        var frontAngle = Math.PI - cameraControls.getFrontAngle(); // face front.
-        localPlayer.controller.direction = frontAngle;
-        localPlayer.outfit.fromDNA( dna );
-        scene.add(localPlayer.outfit.direction);
-        localPlayer.outfit.update();
-    }
+    pose = JSON.parse( decode( fm_pose ) );
 
     setTimeout( initPose, 3000, pose ); // TODO: to replace setTimeout.
 
@@ -335,7 +327,6 @@
 
 //  app.js
 
-    var debugMode;
     var mouse = new THREE.Vector2();
 
     var rendererHalfWidth = renderer.domElement.width * 0.5;
@@ -345,8 +336,7 @@
     localPlayer.controller.center.set(0,1,0);
     localPlayer.controller.direction = Math.PI;
     groundHelper.visible = true;
-
-//  scene.add(localPlayer.outfit.direction);  //  IMPORTANT  //
+    keyInputControls.Off();
 
 //  Animate.
 
