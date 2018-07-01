@@ -27,7 +27,7 @@
 
 
 
-<style>
+<!--style>
     .navbar-nav > li > a.menu-item,
     .navbar-nav > li > div > a.menu-item {font-weight:normal;}
     .navbar-nav > li > a.menu-item:hover,
@@ -36,11 +36,11 @@
     #nav-btn-login { margin-left:10px; }
     #nav-btn-login > a { color:#fff; font-weight:bold; font-size:14px; text-decoration:none; }
     #nav-btn-snapshot > a { color:#38c0ee; }
-</style>
+</style -->
 
 <nav class="navbar navbar-default navbar-fixed-top">
 
-    <div id="navbar" class="container">
+    <div id="navbar-holder" class="container">
     <!--
         <div class="navbar-header">
             <div class="navbar-brand">
@@ -76,9 +76,9 @@
 <script>
 //  poser-navbar.html
     var navbarFolder = "/navbar/";
-    var navbarSelector = "#navbar";
+    var navbarHolderSelector = "#navbar-holder";
     var navbarComponent = navbarFolder + "poser.html";
-    $(navbarSelector).load(navbarComponent, function(resoponse, status, xhr){
+    $(navbarHolderSelector).load(navbarComponent, function(resoponse, status, xhr){
         debugMode && console.log("navbar poser:", status);
     });
 </script>
