@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="description" contents="{{description}}">
     <link rel="manifest" href="/manifest.json">
-    <title>Avatar Body Poser (v1.0)</title>
+    <title>Avatar Poser (v1.1)</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootbox-dialoges.css">
     <link rel="stylesheet" href="/css/side-panels.css">
@@ -40,8 +40,8 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
 
-    <div class="container">
-
+    <div id="navbar" class="container">
+    <!--
         <div class="navbar-header">
             <div class="navbar-brand">
                 <a href="https://anywhere3d.org" class="navbar-caption" title="anywhere3d.org">anywhere3d</a>
@@ -68,10 +68,28 @@
             </li>
 
         </ul>
-
+    -->
     </div>
 
 </nav>
+
+<script>
+//  poser-navbar.html
+    var navbarFolder = "/navbar/";
+    var navbarSelector = "#navbar";
+    var navbarComponent = navbarFolder + "poser.html";
+    $(navbarSelector).load(navbarComponent, function(resoponse, status, xhr){
+        debugMode && console.log("navbar poser:", status);
+    });
+</script>
+
+
+
+
+
+
+
+
 
 <style>
     body { margin:0px; height:100vh; overflow:hidden; font-family: Arial, sans-serif; }
