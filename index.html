@@ -150,10 +150,65 @@
 
 <script>
 
+//  Drop old stores.
+
+    localforage.dropInstance({
+        name: "anywhere3d",
+        storeName: "AW3D_Data",
+    }).then(function(){
+        console.log("AW3D_Data dropped.");
+    });
+
+    localforage.dropInstance({
+        name: "anywhere3d",
+        storeName: "AW3D_db",
+    }).then(function(){
+        console.log("AW3D_db dropped.");
+    });
+
+    localforage.dropInstance({
+        name: "anywhere3d",
+        storeName: "AW3D_Texture",
+    }).then(function(){
+        console.log("AW3D_Texture dropped.");
+    });
+
+    localforage.dropInstance({
+        name: "anywhere3d",
+        storeName: "AW3D_DNA",
+    }).then(function(){
+        console.log("AW3D_DNA dropped.");
+    });
+
+    localforage.dropInstance({name:"localforage"}).then(function(){
+        console.log("localforage cleanup database dropped.");
+    });
+
+</script>
+
+<script>
+//  To be replaces with CacheStorage.
     var AW3D_Cache = localforage.createInstance({
         driver: localforage.INDEXEDDB,
         name: "anywhere3d",
         storeName: "AW3D_Cache",
+        version: 1.0
+    });
+
+    AW3D_Cache.ready().then(function() {
+        console.log("[AW3D Cache ready]:", AW3D_Cache.driver()); // <-- asyncStorage
+    }).catch(function (err) {
+        console.error("[AW3D Cache Error]:", err); 
+    });
+
+</script>
+
+<script>
+
+    var CacheStorage = localforage.createInstance({
+        driver: localforage.INDEXEDDB,
+        name: "anywhere3d",
+        storeName: "cache",
         version: 1.0
     });
 
@@ -164,16 +219,29 @@
         version: 1.0
     });
 
-    AW3D_Cache.ready().then(function() {
-        console.log("[AW3D Cache ready]:", AW3D_Cache.driver()); // <-- asyncStorage
+    var PoseStorage = localforage.createInstance({
+        driver: localforage.INDEXEDDB,
+        name: "anywhere3d",
+        storeName: "poses",
+        version: 1.0
+    });
+
+    CacheStorage.ready().then(function() {
+        console.log("[CacheStorage ready]:", CacheStorage.driver()); // <-- asyncStorage
     }).catch(function (err) {
-        console.error("[AW3D Cache Error]:", err); 
+        console.error("[CacheStorage Error]:", err); 
     });
 
     GalleryStorage.ready().then(function() {
         console.log("[GalleryStorage ready]:", GalleryStorage.driver()); // <-- asyncStorage
     }).catch(function (err) {
         console.error("[GalleryStorage Error]:", err); 
+    });
+
+    PoseStorage.ready().then(function() {
+        console.log("[PoseStorage ready]:", PoseStorage.driver()); // <-- asyncStorage
+    }).catch(function (err) {
+        console.error("[PoseStorage Error]:", err); 
     });
 
 </script>
