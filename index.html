@@ -149,7 +149,7 @@
 <script src="/js/localforage.js"></script>
 
 <script>
-
+/*
 //  Drop old stores.
 
     localforage.dropInstance({
@@ -189,24 +189,6 @@
 
     localforage.dropInstance({name:"localforage"}).then(function(){
         console.log("localforage cleanup database dropped.");
-    });
-
-</script>
-
-<script>
-/*
-//  To be replaced with CacheStorage.
-    var AW3D_Cache = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "AW3D_Cache",
-        version: 1.0
-    });
-
-    AW3D_Cache.ready().then(function() {
-        console.log("[AW3D Cache ready]:", AW3D_Cache.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[AW3D Cache Error]:", err); 
     });
 */
 </script>
