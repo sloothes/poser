@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="description" contents="{{description}}">
     <link rel="manifest" href="/manifest.json">
-    <title>Avatar Body Poser (v1.2)</title>
+    <title>Avatar Body Poser (v1.1)</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootbox-dialoges.css">
     <link rel="stylesheet" href="/css/side-panels.css">
@@ -187,16 +187,15 @@
                 <li id="action-controls" class="menu-helpers"><a>Action Controls</a></li>
             </div>
 
-            <div id="pose-load-file-holder"    class="side-holder"></div>
-            <div id="skinned-loader-holder"    class="side-holder"></div>
-            <div id="avatar-editor-holder"     class="side-holder"></div>
-            <div id="outfit-editor-holder"     class="side-holder"></div>
-            <div id="pose-editor-holder"       class="side-holder"></div>
-            <div id="pose-save-file-holder"    class="side-holder"></div>
+            <div id="pose-load-file-holder" class="side-holder"></div>
+            <div id="skinned-loader-holder" class="side-holder"></div>
+            <div id="avatar-editor-holder"  class="side-holder"></div>
+            <div id="outfit-editor-holder"  class="side-holder"></div>
+            <div id="pose-editor-holder" class="side-holder"></div>
+            <div id="pose-save-file-holder" class="side-holder"></div>
             <div id="pose-save-storage-holder" class="side-holder"></div>
-            <div id="avatar-store-holder"      class="side-holder"></div>
-            <div id="snapshot-holder"          class="side-holder"></div>
-            <div id="mask-button-holder"       class="side-holder"></div>
+            <div id="snapshot-holder" class="side-holder"></div>
+            <div id="mask-button-holder" class="side-holder"></div>
 
             <div id="editor-holder"></div>
             <div id="scene-editor-holder"></div>
@@ -480,15 +479,6 @@ the Babel polyfill is required and must be loaded before ZangoDB. -->
     var poseSaveStorageButtonComponent = componentsFolder + "pose-save-storage-button.html";
     $(poseSaveStorageHolderSelector).load(poseSaveStorageButtonComponent, function(response, status, xhr){
         debugMode && console.log("pose-save-storage-button:", status);
-    });
-</script>
-
-<script>
-//  avatar-store-button.html
-    var avatarStoreHolderSelector = "#avatar-store-holder";
-    var avatarStoreButtonComponent = componentsFolder + "avatar-store-button.html";
-    $(avatarStoreHolderSelector).load(avatarStoreButtonComponent, function(response, status, xhr){
-        debugMode && console.log("avatar-store-button:", status);
     });
 </script>
 
@@ -934,6 +924,8 @@ the Babel polyfill is required and must be loaded before ZangoDB. -->
     }
 */
 </script -->
+
+
 
 
 
