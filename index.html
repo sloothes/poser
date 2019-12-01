@@ -21,24 +21,21 @@
     <link rel="stylesheet" href="/css/panel-ui.css">
     <link rel="stylesheet" href="/css/anywhere3d.css">
     <link rel="stylesheet" href="/css/joystick.css">
-    <link rel="stylesheet" href="/css/uppy.css">
 
             <!-- JQUERY -->
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery.lazy.js"></script>
-    <script src="/js/jquery.lazy.plugins.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-    <script src="/js/validator.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/validator.min.js"></script>
 
     <script>
 
         debugMode = false;
-        var jsFolder = "/js/";
-        var navbarFolder = "/navbar/";
-        var scriptsFolder = "/scripts/";
-        var componentsFolder = "/components/";
-        var animationsFolder = "/animations/";
+        var jsFolder = "js/";
+        var navbarFolder = "navbar/";
+        var scriptsFolder = "scripts/";
+        var componentsFolder = "components/";
+        var animationsFolder = "animations/";
         $.ajaxSetup({ cache: true });
 
     </script>
@@ -47,15 +44,49 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
 
-    <div id="navbar-holder" class="container"></div>
+    <div id="navbar-holder" class="container">
+        <style>
+            .navbar-nav > li > a.menu-item,
+            .navbar-nav > li > div > a.menu-item {font-weight:normal;}
+            .navbar-nav > li > a.menu-item:hover,
+            .navbar-nav > li > div > a.menu-item:hover {color:aquamarine;}
+            .navbar-nav > li > div > a.menu-item { text-decoration:none }
+            #nav-btn-login { margin-left:10px; }
+            #nav-btn-login > a { color:#fff; font-weight:bold; font-size:14px; text-decoration:none; }
+            #nav-btn-snapshot > a { color:#38c0ee; }
+        </style>
 
-    <script>
-        var navbarHolderSelector = "#navbar-holder";
-        var navbarComponent = navbarFolder + "poser.html";
-        $(navbarHolderSelector).load(navbarComponent, function(resoponse, status, xhr){
-            debugMode && console.log("navbar poser:", status);
-        });
-    </script>
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <a href="https://anywhere3d.com" class="navbar-caption" title="anywhere3d.org">anywhere3d</a>
+            </div>
+            <a class="navbar-logo pull-left"><img src="https://i.imgur.com/09bC4Q0.png" alt="anywhere3d logo"></a>
+            <ul class="nav navbar-nav navbar-right pull-left">
+
+                <li class="first menu-item"></li>
+
+                <li id="nav-item-loader"><a class="menu-item">Load pose</a></li>
+                <li id="nav-item-editor"><a class="menu-item">Open editor</a></li>
+
+                <li id="nav-item-over" style="display:none;"><a class="menu-item">Overview</a></li>
+                <li id="nav-item-home" style="display:none;"><a class="menu-item">Home</a></li>
+                <li id="nav-item-dash" style="display:none;"><a class="menu-item">Dashboard</a></li>
+                <li id="nav-item-exam" style="display:none;"><a class="menu-item">Examples</a></li>
+                <li id="nav-item-forum" style="display:none;"><a href="http://anywhere3d.freeforums.net" target="_blank" class="menu-item">Forum</a></li>
+            </ul>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="pull-right">
+                <div class="navbar-btn btn btn-primary btn-white-outline" id="nav-btn-login" style="display:none;">
+                    <a class="menu-item">Login</a>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
 
 </nav>
 
@@ -146,106 +177,16 @@
 
 </section>
 
-<script src="/js/localforage.js"></script>
-
-<script>
-/*
-//  Drop old stores.
-
-    localforage.dropInstance({
-        name: "anywhere3d",
-        storeName: "AW3D_Data",
-    }).then(function(){
-        console.log("AW3D_Data dropped.");
-    });
-
-    localforage.dropInstance({
-        name: "anywhere3d",
-        storeName: "AW3D_db",
-    }).then(function(){
-        console.log("AW3D_db dropped.");
-    });
-
-    localforage.dropInstance({
-        name: "anywhere3d",
-        storeName: "AW3D_Texture",
-    }).then(function(){
-        console.log("AW3D_Texture dropped.");
-    });
-
-    localforage.dropInstance({
-        name: "anywhere3d",
-        storeName: "AW3D_DNA",
-    }).then(function(){
-        console.log("AW3D_DNA dropped.");
-    });
-
-    localforage.dropInstance({
-        name: "anywhere3d",
-        storeName: "AW3D_Cache",
-    }).then(function(){
-        console.log("AW3D_Cache dropped.");
-    });
-
-    localforage.dropInstance({name:"localforage"}).then(function(){
-        console.log("localforage cleanup database dropped.");
-    });
-*/
-</script>
-
-<script>
-
-    var CacheStorage = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "cache",
-        version: 1.0
-    });
-
-    var GalleryStorage = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "gallery",
-        version: 1.0
-    });
-
-    var PoseStorage = localforage.createInstance({
-        driver: localforage.INDEXEDDB,
-        name: "anywhere3d",
-        storeName: "poses",
-        version: 1.0
-    });
-
-    CacheStorage.ready().then(function() {
-        console.log("[CacheStorage ready]:", CacheStorage.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[CacheStorage Error]:", err); 
-    });
-
-    GalleryStorage.ready().then(function() {
-        console.log("[GalleryStorage ready]:", GalleryStorage.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[GalleryStorage Error]:", err); 
-    });
-
-    PoseStorage.ready().then(function() {
-        console.log("[PoseStorage ready]:", PoseStorage.driver()); // <-- asyncStorage
-    }).catch(function (err) {
-        console.error("[PoseStorage Error]:", err); 
-    });
-
-</script>
-
       <!-- LOCAL STORAGE -->
 
-<script src="/js/store2.js"></script>
-<script src="/js/store.on.js"></script>
-<script src="/js/store.array.js"></script>
+<script src="js/store2.js"></script>
+<script src="js/store.on.js"></script>
+<script src="js/store.array.js"></script>
 
     <!-- INFLATE - DEFLATE -->
 
-<script src="/js/rawinflate.js"></script>
-<script src="/js/rawdeflate.js"></script>
+<script src="js/rawinflate.js"></script>
+<script src="js/rawdeflate.js"></script>
 
 <script>
 
@@ -259,16 +200,16 @@
 
 </script>
 
-<script async src="/js/alerts.js"></script>
-<script async src="/js/bootbox.min.js"></script>
-<script async src="/js/bootstrap.min.js"></script>
-<script async src="/js/DeviceDetector.js"></script>
-<script async src="/js/MathDecimalAdjustment.js"></script>
-<script async src="/js/html2canvas.js"></script>
-<script async src="/js/spectrum.js"></script>
-<script async src="/js/watermark.js"></script>
-<script async src="/js/sharer.js"></script>
-<script async src="/js/side-panels.js"></script>
+<script async src="js/alerts.js"></script>
+<script async src="js/bootbox.min.js"></script>
+<script async src="js/bootstrap.min.js"></script>
+<script async src="js/DeviceDetector.js"></script>
+<script async src="js/MathDecimalAdjustment.js"></script>
+<script async src="js/html2canvas.js"></script>
+<script async src="js/spectrum.js"></script>
+<script async src="js/watermark.js"></script>
+<script async src="js/sharer.js"></script>
+<script async src="js/side-panels.js"></script>
 
         <!-- THREEJS -->
 
@@ -293,19 +234,19 @@
 
         <!-- SCENE -->
 
-<script src="/js/scene.js"></script>
-<script src="/js/helpers.js"></script>
-<script src="/js/EdgesHelper.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/EdgesHelper.js"></script>
 
         <!-- AW3D -->
 
-<script src="/js/AW3D.js"></script>
-<script src="/js/PlayerController.js"></script>
-<script src="/js/PlayerLabel.js"></script>
-<script src="/js/KeyInputControls.js"></script>
-<script src="/js/JoystickControls.js"></script>
-<script src="/js/outfitLoader.js"></script>
-<script src="/js/loaders/bonesLoader.js"></script>
+<script src="js/AW3D.js"></script>
+<script src="js/PlayerController.js"></script>
+<script src="js/PlayerLabel.js"></script>
+<script src="js/KeyInputControls.js"></script>
+<script src="js/JoystickControls.js"></script>
+<script src="js/OutfitLoader.js"></script>
+<script src="js/bonesLoader.js"></script>
 
 <script>
 
@@ -317,8 +258,8 @@
 
      <!-- COMPONENTS -->
 
-<script src="/js/editor-panel.js"></script>
-<script src="/js/avatar-editor-panel.js"></script>
+<script src="js/editor-panel.js"></script>
+<script src="js/avatar-editor-panel.js"></script>
 
 <script>
 //  display-helpers.html
@@ -366,8 +307,8 @@
     });
 </script>
 
-<script src="/js/jquery-update-engine.js"></script>
-<script src="/js/jquery-render-engine.js"></script>
+<script src="js/jquery-update-engine.js"></script>
+<script src="js/jquery-render-engine.js"></script>
 
 <script>
     var dna = "tVVdb5swFP0vPMfEBowhb3yq25qpXR66bqoiCC645auYdIqi/PddIFqL0rVZlImna5977XvOPXirxFWyUWZbpYwKrsyGcKI8CyniHBbaZs0nilxFXfCTTOC7mygprwreNpCoTOWjKEueTC/CpQvJl9GGN0vH/YKN5TPW1AcJ5Yqo5Y2Icgk1tkq7qbuj5lxmizYqk6hJ5ntAj61hM2vbWs6mU6GKIl036qoqpvW3W+/2MVYf6hRwvBBSimc+/yve/x5ffGb5Hl/VrahK2fW6XosEciyL+ZZmMeSbvo8M7NjI8TWMcGAxNwgp1QiFxD0z0N8CWn1101WVV40yIyZjDKBAk0gAibuzopVogR4Ci1mUiDJVZtrLnWGDMGaaNmB7/nrAwHXbRKWso4aXrTK7B85granWaVZyCbfHqgkc8TbK9/FL1U9ly0s5nLvbTU4neiHo9U2O1bo8jugx/pBo4nqmF+oMEZ0EyLBDIFq3bEQptgPH0DziOiOigw2XZyLa1phpEf0EnumY5y5+m+m73UTJItHIVz4a4lONdNFlz3ki1sUy/B9W8n8lN5dNvFcsXhf1OzYaYQ/V9cEzxMUB8nzsIMMJNWRbmoZcz7Id5lHHMvWRul13Z1L3FP+8oWtHwGKQBquYDpImTQ/4I+kQnyqp32X3YlIQUz+nmJf4+upGM44Sc4z92Npj/KH41Ahd4ng28i1CkWE6OrIJ/E1D5nrMx7oduOZI/J6HM6kPU6Zjm30wA8PSP4wA6mbgPbPLrOKvJ2OIT52MRSd1vuhq9O+meYTZr7KqTI8ajvbh64+n+Gn/CL4/HGPsodhm6AQhwxh5YciQodkExLZ8RIlh6tTTKNWN8YPZt3aE3NoZzf6mmVNeJhwOVu550W3tfgM="
@@ -458,15 +399,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
