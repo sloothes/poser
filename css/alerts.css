@@ -1,0 +1,17 @@
+
+    .alert-small {max-width:50%;}
+    .alert-normal {max-width:75%;}
+    .alert-large {max-width:100%;}
+    .alert-icon {width:50px; height:50px; display:inline-block; margin-right:10px; float:right;}
+    .icon-bug {background:url("https://i.imgur.com/zxSPAEL.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+    .icon-web {background:url("https://i.imgur.com/Ro3bzC8.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+    .icon-logo {background:url("https://i.imgur.com/09bC4Q0.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+    .icon-error {background:url("https://i.imgur.com/D7Qx5sU.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+    .icon-cancel {background:url("https://i.imgur.com/Z36ZsNx.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+    .icon-success {background:url("https://i.imgur.com/mHGg0Bi.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+    .icon-warning {background:url("https://i.imgur.com/m1TrzOn.png") 50% 50% / contain no-repeat rgba(255, 255, 255, 0);}
+
+
+
+
+

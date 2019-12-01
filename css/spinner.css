@@ -1,0 +1,7 @@
+/* spinner.css */
+.spinner { height:100%; text-align:center; }
+.snapshot-spinner { position:absolute; left:0px; top:0px; width:100%; height:100%; text-align:center; }
+.img-helper { display:inline-block; height:100%; vertical-align:middle; }
+.spin-img { height:64px; vertical-align:middle; }
+
+
