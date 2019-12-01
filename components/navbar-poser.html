@@ -1,0 +1,38 @@
+<style>
+    .navbar-nav > li > a.menu-item,
+    .navbar-nav > li > div > a.menu-item {font-weight:normal;}
+    .navbar-nav > li > a.menu-item:hover,
+    .navbar-nav > li > div > a.menu-item:hover {color:aquamarine;}
+    .navbar-nav > li > div > a.menu-item { text-decoration:none }
+    #nav-btn-login { margin-left:10px; }
+    #nav-btn-login > a { color:#fff; font-weight:bold; font-size:14px; text-decoration:none; }
+    #nav-btn-snapshot > a { color:#38c0ee; }
+</style>
+
+<div class="navbar-header">
+    <div class="navbar-brand">
+        <a href="https://anywhere3d.org" class="navbar-caption" title="anywhere3d.org">anywhere3d</a>
+    </div>
+    <a class="navbar-logo pull-left"><img src="https://i.imgur.com/09bC4Q0.png" alt="anywhere3d logo"></a>
+    <ul class="nav navbar-nav navbar-right pull-left">
+        
+        <li class="first menu-item"></li>
+
+        <li id="nav-item-over" style="display:none;"><a class="menu-item"><div>Overview</div></a></li>
+        <li id="nav-item-home" style="display:none;"><a class="menu-item"><div>Home</div></a></li>
+        <li id="nav-item-dash" style="display:none;"><a class="menu-item"><div>Dashboard</div></a></li>
+        <li id="nav-item-exam" style="display:none;"><a class="menu-item"><div>Examples</div></a></li>
+        <li id="nav-item-forum"><a href="http://anywhere3d.freeforums.net" target="_blank" class="menu-item"><div>Forum</div></a></li>
+
+    </ul>
+</div>
+
+<ul class="nav navbar-nav navbar-right">
+
+    <li class="pull-right">
+        <div class="navbar-btn btn btn-primary btn-white-outline" id="nav-btn-login" style="display:none;">
+            <a class="menu-item">Login</a>
+        </div>
+    </li>
+
+</ul>
