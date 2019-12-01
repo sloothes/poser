@@ -280,16 +280,16 @@
     var hm_pose = "vVa7bhwxDPwX1zqB70d+xXCVNoCDOF2Qf89IewkuhY1b2PBts9KJ5HA4pPbx18P355eHL48XmoSf5OCawspjb3Dn03j48fwTR2ish7F++foNax54nn6Pvy7+ecCLO2keLoj6bhc83VprXGQau8fyYMxyv4eVh4xLIgdXHVgKVdiJJPQwb4tY5pasccKcuyyXoZtLD5lS8PSZJF54mr6fxX4Hi5d30rjsyXVbllbX5rGIP5hH8IKtFAkBPlXK5XZ2N3drk6njxd/kybSwCRsXWXjRMl1+impuX0ohlMjH4TPl/lTX/2eICXBriMfktZXK3DfhJimS6a4INt7sjNc2SahNsOMV4sZSm77C4ZTgcPZ4u1eV1MZSbNKaOQa7usUiUdVSHsYdtBXBpN5CgjCBIKQbCUMfUtgmLUI1eyMxoEILkEng7AdxKBPxqwEbNNiWd+V/o3KCoSqOWjoCLpeFMUQsALrZFj+2TcPCvJhLzQp+cDA9mlwoNUGkvQ7bJiO73aAUtloNneqpJ/SnM7o29RQOpEgqFaSfEjB0ABQ0rreI6Qk5unek7L6TIDTPZ0U+VfI1S8NDjpprXYtOt0NxUjkmBq4wyA5FDd6wEotsFJSUM3NRjb4o46yoSMuyVXPD1IBclhJKNwuvIDmKXteia+Queoven/tlVz1340QA6qo6+uks91D0Ltz6UvBTksHdyHZMW/RE2qm74XTkpz8=";
     var fm_pose = "vZXJbtVAEEX/5a39WjUP/EqUFVukIMIO8e/cbieBLBJsUJ698dBdVX1PDXc/Ll8fHi+f7q40CJfkxj2Clfrlim3948777fLt4TtW0zZvxvvj5y945w33/c/t2dqLMTy4k+ZugqgPm+Dh1lrbVYax+wrCmOW1hRm2i6q3h5i0aaljaXeFtKulm6fWm26mAdmuOYRdddoTqrATJ9V9e1vE3G7JGr+3DyhJHI3I0trSlj0E6EwezjNKePZ3HHCX5TSNo0hvMqTg65YsrjxM/w5jftRgLEwNqBkLRJOVQN3i8nwfRP8HiOuHk5geyHXZLq2uhaKIb4piiVz4CGldZAaDyuzyUya4fWYSAaFvu82U4+eY/8+cOiCcwR+UrpXJzH3c3apRJbVt5mESQzbrlPqggGV4SzW8iYStVKp81f4GsxlVi1NA+/TZc5gikA5WwRbNyXNnoBSIS8pnVRiSbqSIGthpG72TbjbY3FclUNjMaZTE7GXHSeuIriUXhRf6HI9UieO67VNBEMXeanGZngDv3pGyykyCkKa38nyK9+xqgfmxA9d6Ik5/dh/QRRvWRDvTLLSSRRff8F6EVLAkYUQ7IjiLEoutq3qqn/NR8J9T9tb9RiA783pirpGLeWPAHT/Mgp66oEeYT+iCOE9KT7Fzm5PfT2UMhhRjYC3oFmnHR9W/eL7/BQ==";
 
-//  localPlayer.fromDNA( dna );
-//  pose = JSON.parse( decode( fm_pose ) );
-//  setTimeout( initPose, 3000, pose ); // TODO: to replace setTimeout.
+    localPlayer.fromDNA( dna );
 
-    new Promise( function(resolve, reject){
-        resolve( localPlayer.fromDNA( dna ) );
-    }).then( function(){
-        return JSON.parse( decode( fm_pose ) );
-    }).then( function( pose ){
-        initPose( pose );
+//  pose = JSON.parse( decode( fm_pose ) );
+//  setTimeout( initPose, 3000, pose ); // replace setTimeout.
+
+    Promise.resolve( decode( fm_pose ) )
+    .then( function( data ){
+        return JSON.parse( data );
+    }).then( function( json ){
+        return initPose( json );
     }).catch(function(err){
         console.error(err);
     });
